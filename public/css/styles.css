@@ -1,6 +1,113 @@
 /******* Change Box Model ***************/
+/*Font families
+  - 'Roboto', sans-serif;
+  - 'Roboto Slab', serif;
+  - 'Roboto Mono', monospace;
+  - 'Roboto Condensed', sans-serif;
+  - 'Roboto Condensed', sans-serif;
+  - 'Roboto Cond
+*/
+:root{
+  --background-nav:#112A46;
+  --background-main:#F3F3F3;
+  --font-color:#f3f3f3;
+  --font-color-hover:#EEDE97;
+  --light-background-font:#112A46;
+  --box-color: #5B0987;
+}
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+body{
+
+}
+main{
+
+}
+header{
+
+}
+footer{
+  background:var(--background-nav);
+  color:var(--font-color);
+
+}
+nav{
+  background-color: var(--background-nav);
+  color: var(--font-color);
+
+}
+section{
+
+}
+h1,h2,h3,h4{
+  font-family: 'Roboto Condensed', sans-serif;
+  color: var(--light-background-font);
+}
+p{
+  font-family: 'Roboto', sans-serif;
+  color: var(--light-background-font);
+}
+a{
+  color: var(--font-color);
+}
+a:hover{
+  color: var(--font-color-hover);
+}
+ul{
+  list-style: bullet;
+}
+li{
+
+}
+img{
+
+}
+
+
+/* main parts */
+.container{
+
+}
+
+/* box for content that floats over top*/
+.delorean{
+
+}
+.btn-dmc{
+
+
+}
+.btn-dmc:hover{
+
+
+}
+/* section with bullets */
+
+.reviews{
+
+
+}
+.rating{
+
+}
+
+/* section with cards */
+
+.upgrades{
+
+}
+.cards{
+
+}
+.card{
+
+}
+.card:hover{
+
+}
+.card__img{
+
 }
