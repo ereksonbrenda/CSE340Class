@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "render.com",
+            "connectString": "postgres://cse340brenda:6VfX1CL6t2T0YXHvzeza7ZLOFGWZQOUn@dpg-cl1c2mi4i3ns73cvane0-a.oregon-postgres.render.com/cse340brenda"
+        }
+    ],
+    "liveServer.settings.port": 5501
+}

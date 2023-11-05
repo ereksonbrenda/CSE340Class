@@ -8,62 +8,123 @@
   - 'Roboto Cond
 */
 :root {
-  --background-nav: #112a46;
-  --background-main: #f3f3f3;
-  --font-color: #f3f3f3;
-  --font-color-hover: #eede97;
-  --light-background-font: #112a46;
-  --box-color: #5b0987;
+  /* light theme */
+  --background-light: white;
+  --font-color-light: #112a46;
+  --link-color-light: #2a609e;
+  --link-color-hover-light: #64add8;
+  /* dark theme */
+  --background-dark: #112a46;
+  --font-color-dark: #f3f3f3;
+  --link-color-dark: #64add8;
+  --link-color-hover-dark: #ffffff;
+  /* shared */
+  font-size: 16px;
 }
 *,
 *:before,
 *:after {
   box-sizing: border-box;
-
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Roboto Slab', serif;;
+  color: var(--font-color-light);
+  margin-bottom: 0.2em;
+}
+h1{
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  color: var(--font-color-light);
+}
+a {
+  color: var(--link-color-light);
+}
+a:hover {
+  color: var(--link-color-hover-light);
+}
+.dark{
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
+}
+ul{
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0.2em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
+.dark p,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4{
+  color: var(--font-color-dark);
+}
+.dark a{
+  color: var(--link-color-dark);
+} 
+.dark a:hover {
+  color: var(--link-color-hover-dark);
 }
  
 
 body {
   border:10px solid #000;
   border-radius:10px;
-  background-image:url('/public/images/site/checkerboard.jpg');
+  background-image:url('../images/site/checkerboard.jpg');
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-  margin:  10px 100px;
+  max-width: 1080px;
+  margin: 0 auto;
   padding: 0;
-
+  color: var(--font-color-light);
 }
+
+body header,
+body main,
+body footer,
+body nav {
+  padding: 1rem;
+}
+
 main {
-  background-color: var(--background-main);
+  background-color: var(--background-light);
 }
 header {
-  background-color: var(--background-nav);
-  color: var(--font-color);
-
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
+  position:relative;
 }
+header a {
+  color: var(--font-color-dark);
+}
+header a:hover {
+  color: var(--link-color-hover-dark);
+} 
 #tools{
-  background-color: var(--background-nav);
-  color: var(--font-color);
+  position:absolute;
+  top:0;
+  right:0;
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  float:right;
-
 }
 span{
-  color: var(--font-color);
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size:3em;
 }
-footer {
-  background: var(--background-nav);
-  color: var(--font-color);
-}
+
 nav {
   display:block;
-  background-color: var(--background-nav);
-  color: var(--font-color);
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
   width: 100%;
   padding: 0.5rem 1rem;
 
@@ -78,39 +139,6 @@ nav ul{
   overflow: hidden;
   text-decoration: none;
 }
-
-li{
-  float: left;
-  padding:10px;
-  list-style-type:none;
-}
-
-section {
-  background-color: var(--background-main);
-  color: var(--font-color);
-
-}
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Roboto Slab', serif;;
-  color: var(--light-background-font);
-}
-p {
-  font-family: "Roboto", sans-serif;
-  color: var(--light-background-font);
-}
-a {
-  color: var(--font-color);
-}
-a:hover {
-  color: var(--font-color-hover);
-}
-ul {
-  list-style: bullet;
-}
-
 img {
   
   max-width: 100%;
@@ -118,8 +146,12 @@ img {
 }
 
 /* main parts */
-.container {
-  
+.hero {
+  background-image: url('../images/vehicles/delorean.jpg');
+  display:flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
@@ -127,94 +159,68 @@ img {
 
 /* box for content that floats over top*/
 .delorean {
-  position: absolute;
-  top: 500px;
-  left:200px;
   padding:4px;
   background-color:whitesmoke;
   opacity:70%;
-  color: var(--font-color);
   border-radius: 1rem;
 }
 .btn-dmc {
-  background-color: var(--background-nav);
-  color: var(--font-color);
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
   opacity:100%;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
 }
 .btn-dmc:hover {
-  background-color: var(--font-color-hover);
+  background-color: var(--link-color-hover-dark);
   opacity: 100%;
 
 }
-/* section with bullets */
 
-ul {
+.section-8-4{
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  
-  text-decoration: none;
-  flex-wrap: wrap;
-  width:45%;
-
 }
+.section-8-4 > div:first-child{
+  width: 60%;
+}
+.section-8-4 > div:last-child{
+  width: 40%;
+}
+
+/* section with bullets */
 .last{
   display: flex;
-  display: flexbox;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: nowrap;
   align-content: space-between;
   align-items: flex-start;
 
 }
-.reviews{
-  display:flexbox;
-  flex-direction:row;
-  justify-content:space-between;
-
-}
+.reviews{}
 .rating {
-  display:flexbox;
+  display:flex;
   flex-direction:row;
   justify-content:space-between;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
-  
-  color: var(--background-nav);
-
 }
 
 /* section with cards */
 
 .upgrades {
-  display:flexbox;
-  flex-direction:row;
-  justify-content:space-between;
-  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
- 
-  color: var(--background-nav);
-
 }
 .cards {
   display: flex;
-  display: flexbox;
   flex-direction: row;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
-  
   flex-wrap: wrap;
   align-content: center;
 }
@@ -223,16 +229,27 @@ ul {
   margin: 1rem 0;
   padding: 1rem;
   border-radius: 1rem;
-  background-color: var(--box-color);
-  color: var(--font-color);
-}
-.card:hover {
-  background-color: var(--font-color-hover);
 }
 .card__img {
   width: 100%;
   height: auto;
 }
+footer {
+  display:flex;
+}
 
-
+@media screen and (max-width: 720px) {
+  .section-8-4{
+    flex-direction: column;
+  }
+  .section-8-4 > div:first-child{
+    width: 100%;
+  }
+  .section-8-4 > div:last-child{
+    width: 100%;
+  } 
+  .last{
+    flex-direction: column-reverse;
+  }
+}
 
