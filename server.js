@@ -15,6 +15,7 @@ const utilities = require("./utilities")
 const invController = require("./controllers/invController")
 
 
+
 /* ***********************
  * view Engine and Templates
  *************************/
@@ -30,7 +31,7 @@ app.use(require("./routes/static"))
 //Index Route
 app.get("/",(baseController.buildHome))
 //Inventory Routes
-app.use("/inv", require("./routes/inventory"))
+app.use("/inventory", require("./routes/inventoryRoute"))
 //Account Routes
 app.use("/account", require("./routes/accountRoute"))
 
