@@ -32,8 +32,6 @@ app.use(require("./routes/static"))
 app.get("/",(baseController.buildHome))
 //Inventory Routes
 app.use("/inventory", require("./routes/inventoryRoute"))
-//Account Routes
-app.use("/account", require("./routes/accountRoute"))
 
 
 
