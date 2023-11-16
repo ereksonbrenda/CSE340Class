@@ -27,6 +27,10 @@ app.use(static)
 
 //Index Route
 app.get("/", baseController.buildHome)
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
 
 
 /* ***********************
