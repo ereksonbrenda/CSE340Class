@@ -11,8 +11,9 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController=require("./controllers/baseController")
-const inventoryRoute=require("./routes/inventory") 
+const inventory = require("./routes/inventory")
 const utilities = require("./utilities")
+const { renderSync } = require("sass")
 
 
 /* ***********************
