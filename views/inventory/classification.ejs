@@ -1,10 +1,10 @@
 <%#Unit 3 activity 2: Create a classification view#>
 <% if (title) { %>
     <h1><%= title %></h1>
-    <% } else {
+    <% } else 
+    {
       res.redirect('/')
     } %>
-
     <%# messages() %>
     <%#inventory display#>
     <%- grid %>
