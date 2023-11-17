@@ -29,19 +29,13 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 //Index Route
-app.get("/",(baseController.buildHome))
+app.get("/",utilities.handleErrors(baseController.buildHome))
 //Inventory Routes
 app.use("/inventory", require("./routes/inventoryRoute"))
-
-
-
-/* ***********************
- * Local Server Information
- * Values from .env (environment) file
- *************************/
-const port = process.env.PORT
-const host = process.env.HOST
-
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
 
 
 /* ***********************
@@ -58,6 +52,17 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
+/* ***********************
+ * Local Server Information
+ * Values from .env (environment) file
+ *************************/
+const port = process.env.PORT
+const host = process.env.HOST
+
+
+
+
 
 
 /* ***********************
