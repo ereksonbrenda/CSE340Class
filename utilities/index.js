@@ -24,22 +24,20 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-/* ************************
- * Constructs the inventory grid HTML
- ************************** */
-Util.buildClassificationGrid = async function (data) {
-  let grid = '<div class="grid-container">'
-  data.forEach((row) => {
-    grid += '<div class="grid-item">'
-    grid += '<a href="/inventory/' + row.vehicle_id + '">'
-    grid += '<img src="/images/' + row.vehicle_id + '.jpg" alt="'
-    grid += row.year + " " + row.make_name + " " + row.model_name + '">'
-    grid += "</a>"
-    grid += "</div>"
-  })
-  grid += "</div>"
-  return grid
+
+
+
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildClassificationGrid = async function(data){
 }
+
+/* **************************************
+* Build the detail view HTML
+* ************************************ */
+Util.buildDetailPage = async function(data){}
+
 
 /* ****************************************
  * Middleware For Handling Errors

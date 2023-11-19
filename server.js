@@ -30,8 +30,14 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 //Index Route
 app.get("/",utilities.handleErrors(baseController.buildHome))
-//Inventory Routes
 app.use("/inventory", require("./routes/inventoryRoute"))
+app.get('/broken', (req, res, next) => {
+  // Create an error object
+  const err = new Error('This is a simulated error');
+  
+  // Pass the error to the next middleware
+  next(err);
+});
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -44,10 +50,14 @@ app.use(async (req, res, next) => {
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
+  let systemErrorMessage = 'OOps there is an error with the system! Please try again later.';
+  let defaultErrorMessage = 'Oh no! There was a crash. Maybe try a different route?';
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  if(err.status == 500){ message = err.message} else {message = systemErrorMessage}
+  if(err.status == 404){ message = err.message} else {message = defaultErrorMessage}
   res.render("errors/error", {
     title: err.status || 'Server Error',
+    //message: err.message,
     message,
     nav
   })
@@ -59,10 +69,6 @@ app.use(async (err, req, res, next) => {
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
-
-
-
-
 
 
 /* ***********************

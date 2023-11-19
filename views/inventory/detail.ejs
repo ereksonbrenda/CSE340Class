@@ -1,0 +1,28 @@
+<% //Unit 3 activity 2: Create a classification view %>
+<% 
+  if (title) { 
+%>
+
+<div class="single">
+ <div class="imagedisplay">    
+  <h1><strong><%= title %></strong></h1>
+  <img src="<%= vehicle.inv_image %>" alt="<%= title %>">
+ </div> 
+  <div>
+    <div class="info">
+      <h2 class="price"><%= vehicle.inv_make + ' ' + vehicle.inv_model %> Details</h2>
+      <p class="price">Price: $ <%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+    </div>
+    <div class="sinfo">
+      <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
+      <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
+      <p><strong>Miles:</strong> <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %></p>
+    </div>
+  </div> 
+</div>
+
+<%
+} else {
+    res.redirect('/')
+  } 
+%>

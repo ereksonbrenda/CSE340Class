@@ -1,10 +1,37 @@
-<%#Unit 3 activity 2: Create a classification view#>
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else 
-    {
-      res.redirect('/')
-    } %>
-    <%# messages() %>
-    <%#inventory display#>
-    <%- grid %>
+<% //Unit 3 activity 2: Create a classification view %>
+<% 
+if (title) { 
+%>
+  <h1><%= title %></h1>
+<%
+  if(content.length > 0){
+
+    content.forEach(vehicle => { 
+%>
+      
+<a class="linking"  href="../../inventory/detail/<%= vehicle.inv_id %>" title="View <%= vehicle.inv_make + ' ' + vehicle.inv_model %> details">     
+ <div class="custom">
+  <h2>
+    <%= vehicle.inv_make + ' ' + vehicle.inv_model %>
+  </h2>
+      <img class="display" src="<%= vehicle.inv_image %>" alt="Image of<%= vehicle.inv_make + ' ' + vehicle.inv_model %> on CSE Motors">
+      
+    <div class="cprice">
+      <span>
+        $ <%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %>
+      </span>
+    </div>
+ </div>
+</a>
+<% 
+    })
+
+  } else { 
+%>
+<p class="notice">Sorry, no matching vehicles could be found.</p>
+<%
+  }
+} else {
+  res.redirect('/')
+} 
+%>

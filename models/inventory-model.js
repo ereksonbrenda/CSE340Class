@@ -25,5 +25,29 @@ async function getInventoryByClassificationId(classification_id) {
     }
   }
 
+  /* ***************************
+  *  Get inventory detail by inventory_id
+  * ************************** */
+  async function getInventoryDetailById(inventory_id) {
+    try {
+      const data = await pool.query(
+        `SELECT * FROM public.inventory AS item 
+        WHERE item.inv_id = $1`,
+        [inventory_id]
+      )
+      if (data.length === 0) {
+        throw new Error("ModelError: Unable to find inventory item")
+      }else{
+        return data.rows
+      }
+    } catch (error) {
+      console.error("getInventoryDetailById error " + error)
+    }
+  }
 
-  module.exports = {getClassifications, getInventoryByClassificationId};
+
+  module.exports = {
+    getClassifications,
+    getInventoryByClassificationId,
+    getInventoryDetailById
+  };
