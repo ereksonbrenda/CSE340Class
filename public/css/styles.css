@@ -339,7 +339,9 @@ img {
 }
 
 
-
+.bkimgerr{
+  color:white;  
+}
 
 footer {
   display:flex;

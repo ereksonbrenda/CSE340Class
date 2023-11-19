@@ -1,11 +1,17 @@
 <% if (title) { %>
     <h1><%= title %></h1>
-    <% } else 
+<div class="bkimgerr">
+  <h2><%- message %></h2>
+  <img src="/images/site/pexels-pixabay-78793.jpg" alt="old car crash">
+</div>
+
+<% } else 
     {
       res.redirect('/')
     } %>
 
-    <%- message %>
+
+   
    
 
 
