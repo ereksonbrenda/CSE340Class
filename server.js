@@ -15,6 +15,7 @@ const static = require("./routes/static")
 const baseController=require("./controllers/baseController")
 const utilities = require("./utilities")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
   * Middleware
@@ -37,8 +38,6 @@ const inventoryRoute = require("./routes/inventoryRoute")
     next()
  })
 
- 
-
 /* ***********************
  * view Engine and Templates
  *************************/
@@ -54,9 +53,13 @@ app.use(static)
 //Index Route
 app.get("/",utilities.handleErrors(baseController.buildHome))
 app.use("/inventory", require("./routes/inventoryRoute"))
+//account route
+app.get("/account/login", utilities.handleErrors(accountRoute.buildLogin))
+app.use("/account", require("./routes/accountRoute"))
+
 app.get('/broken', (req, res, next) => {
-  // Create an error object
-  const err = new Error('This is a simulated error');
+    // Create an error object
+const err = new Error('This is a simulated error');
   
   // Pass the error to the next middleware
   next(err);
@@ -65,7 +68,6 @@ app.get('/broken', (req, res, next) => {
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
-
 
 /* ***********************
 * Express Error Handler

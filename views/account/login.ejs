@@ -1,0 +1,27 @@
+<% 
+if (title) { 
+%>
+  <h1><%= title %></h1>
+<%
+<%- messages() %>
+
+<form>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" name="account_email" id="email" class="form-control" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="account_password" id="password" class="form-control" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <p>Don't have an account? Register here:</p>
+    <a href="/account/register" class="btn btn-secondary">Register</a>
+</form>
+
+
+}
+ else {
+  res.redirect('/')
+}
+%>
