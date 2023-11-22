@@ -18,17 +18,18 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
-  * Middleware
-  *************************/
- app.use(session({ store: new (require('connect-pg-simple')(session))({
-  createTableIfMissing: true,
-  pool,
- }),
- secret: process.env.SESSION_SECRET,
- resave: true,
- saveUninitialized: true,
- name: 'sessionId',
- }))
+ * Middleware
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
 
 
  //Express Messages Middleware
@@ -53,9 +54,11 @@ app.use(static)
 //Index Route
 app.get("/",utilities.handleErrors(baseController.buildHome))
 app.use("/inventory", require("./routes/inventoryRoute"))
+
 //account route
-app.get("/account/login", utilities.handleErrors(accountRoute.buildLogin))
 app.use("/account", require("./routes/accountRoute"))
+
+//broken route
 
 app.get('/broken', (req, res, next) => {
     // Create an error object

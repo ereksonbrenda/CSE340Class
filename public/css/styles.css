@@ -205,7 +205,7 @@ img {
   align-items: flex-start;
 
 }
-.reviews{}
+
 .rating {
   display:flex;
   flex-direction:row;
@@ -347,6 +347,47 @@ footer {
   display:flex;
   flex-direction:column;
 }
+
+
+/*Login Page */
+form{
+  background-color: var(--link-color-dark);
+  border:2px solid var(--background-dark);
+  box-shadow: 2px 2px 2px var(--background-dark);
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem;
+
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1rem;
+}
+.btn {
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
+  font-size:1em;
+  text-align: center;
+  opacity:100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 2px var(--background-dark);
+  width: 90px;
+  height: 50px;
+}
+
+.btn:hover {
+  background-color: var(--link-color-light);
+  color:var(--link-color-hover-dark);
+  opacity: 100%;
+  transform: scale(1.2);
+}
+
+
 
 @media screen and (max-width: 720px) {
   .section-8-4{

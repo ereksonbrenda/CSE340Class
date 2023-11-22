@@ -1,14 +1,15 @@
-// Needed Resources 
+/* ******************
+*account route
+******************* */
 const express = require("express")
-const router = new express.Router() 
-const invController = require("../controllers/invController")
-const utilities = require("../utilities/")
+const router = express.Router()
 const accountController = require("../controllers/accountController")
+const utilities = require("../utilities")
+
 
 /* ************************
 * Deliver Login View
 ************************** */
-
-router.get("/account/login", utilities.handleErrors(accountController.buildLogin));
+router.get("/login", accountController.buildLogin);
 
 module.exports = router;
