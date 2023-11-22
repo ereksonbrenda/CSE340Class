@@ -1,0 +1,37 @@
+<% 
+if (title){ 
+%>
+    <h1><%= title %></h1>
+<%- messages() %>
+<form>
+    <div class="f-name">
+        <label for="f-name">First Name</label>
+        <input type="text" name="account_firstname" id="f-name" class="form-control" placeholder="Enter your first name" required>
+    </div>
+    <div class="l-name">
+        <label for="l-name">Last Name</label>
+        <input type="text" name="account_lastname" id="l-name" class="form-control" placeholder="Enter your last name" required>
+    </div>
+    <div class="eml">
+        <label for="email">Email address</label>
+        <input type="email" name="account_email" id="eml" class="form-control" placeholder="Enter email" required>
+    </div>
+    <div class="psswrd">
+        <label for="password">Password</label>
+        <input type="password" name="account_password" id="psswrd" class="form-control" placeholder="8 characters, 1 upper, 1 num, 1 char" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{12,30}$">
+    </div>
+    <div>
+        <button type="submit" class="subbtn">Register Me Now!</button>
+    </div>
+    
+</form>
+
+
+
+<% 
+} else 
+    {
+      res.redirect('/')
+
+    } 
+%>

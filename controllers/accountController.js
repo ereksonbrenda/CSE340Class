@@ -11,5 +11,16 @@ accountController.buildLogin = async function(req, res, next){
     })
 }
 
-module.exports = accountController
+/* ************************
+* Deliver Registration View
+************************** */
+accountController.buildRegistration = async function(req, res, next){
+    let nav = await utilities.getNav()
+    res.render("account/registration", {
+        title: "Registration",
+        nav,
+    })
+}
+
+module.exports = accountController;
 
