@@ -7,10 +7,9 @@ const pool = require("../database/")
 async function registerAccount(account_firstname, account_lastname, account_email, account_password){
     try {
       const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password) VALUES ($1, $2, $3, $4) RETURNING *"
-      const account = await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
-      return account.rows[0]
+      return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
     } catch (error) {
-      return error.message
+      throw new Error(error.message);
     }
   }
 
