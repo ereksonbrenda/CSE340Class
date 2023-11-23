@@ -1,0 +1,52 @@
+<% 
+if (title){ 
+%>
+    <h1><%= title %></h1>
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="notice>
+    <% errors.array().forEach(error => { %>
+        <li>
+            <%= error.msg %>
+        </li>
+        <% }) %>
+        </ul>
+        <% } %>
+
+<form id="registerForm" action="/account/register" method="post"></ul>
+    <h2 class="formap">ALL FIELDS ARE REQUIRED.</h2>
+    <div class="f-name">
+        <label for="f-name">First Name</label>
+        <input type="text" name="account_firstname" id="f-name" class="form-group" size="10" placeholder="Enter your first name" required value="<%= locals.account_firstname %>">
+    </div>
+    <div class="l-name">
+        <label for="l-name">Last Name</label>
+        <input type="text" name="account_lastname" id="l-name" class="form-group" placeholder="Enter your last name" required value="<%= locals.account_lastname %>">
+    </div>
+    <div class="eml">
+        <label for="email">Email address</label>
+        <input type="email" name="account_email" id="eml" class="form-group" placeholder="Enter email" required value="<%= locals.account_email %>">
+    </div>
+    <div class="psswrd">
+        <div class="require">
+            <p>The password must have at least 8 characters, include 1 uppercase, 1 number, 1 symbol.</p>
+        </div>
+        <label for="password">Password</label>
+        <input type="password" name="account_password" id="psswrd" class="form-group" placeholder="Enter your password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{12,30}$">
+    </div>
+    <div>
+        <button type="submit" class="subbtn">Sign me in!</button>
+    </div>
+    
+</form>
+
+
+
+<% 
+} else 
+    {
+      res.redirect('/')
+
+    } 
+%>

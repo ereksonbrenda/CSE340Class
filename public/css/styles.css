@@ -389,6 +389,50 @@ form{
 
 /* ================== */
 /* registration page */
+.formap{
+  color:#f3f3f3;
+}
+
+input {
+  background-color: var(--background-light);
+  border:2px solid var(--background-dark);
+  box-shadow: 2px 2px 2px var(--background-dark);
+  border-radius: 4px;
+  color: var(--font-color-dark);
+  padding: 1rem;
+  margin: 1rem;
+}
+input:required:invalid, input:focus:invalid {
+  background-color: #ffdddd;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+input:required:valid {
+  background-color:lightgreen;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+.require{
+  border:2px solid var(--background-dark);
+  box-shadow: 2px 2px 2px var(--background-dark);
+  border-radius: 4px;
+  color: var(--font-color-dark);
+  padding: 1rem;
+  margin: 1rem;
+
+}
+.require p{
+  color: var(--font-color-dark);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+label{
+  color: var(--font-color-dark);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 .subbtn{
   background-color: var(--background-dark);
   color: var(--font-color-dark);
@@ -399,8 +443,8 @@ form{
   border-radius: 0.5rem;
   text-decoration: none;
   box-shadow: 2px 2px 2px var(--background-dark);
-  width: 110px;
-  height: 80px;
+  width: 150px;
+  height: 100px;
 }
 .subbtn:hover {
   background-color: var(--link-color-light);
@@ -408,6 +452,7 @@ form{
   opacity: 100%;
   transform: scale(1.2);
 } 
+
 .psswrd{
   display: flex;
   flex-direction: column;
@@ -415,7 +460,7 @@ form{
   font-weight: bold;
   margin: 1rem;
 } 
-.eml{
+.eml, .f-name, .l-name, .psswrd, .psswrd2{ 
   display: flex;
   flex-direction: column;
   font-size: 1em;
@@ -423,7 +468,26 @@ form{
   margin: 1rem;
 }
 
+.reg{
+  background-color: var(--background-dark);
+  color: var(--font-color-dark);
+  font-size:1em;
+  text-align: center;
+  opacity:100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 2px var(--background-dark);
+  width: 150px;
+  height: 100px;
 
+}
+.reg:hover {
+  background-color: var(--link-color-light);
+  color:var(--link-color-hover-dark);
+  opacity: 100%;
+  transform: scale(1.2);
+}
 
 @media screen and (max-width: 720px) {
   .section-8-4{

@@ -1,5 +1,6 @@
 const utilities = require("../utilities/")
 const accountController = {}
+
 /* ************************
 * Deliver Login View
 ************************** */
@@ -8,19 +9,22 @@ accountController.buildLogin = async function(req, res, next){
     res.render("account/login", {
         title: "Login",
         nav,
+        errors: null,
     })
 }
 
 /* ************************
 * Deliver Registration View
 ************************** */
-accountController.buildRegistration = async function(req, res, next){
+accountController.buildRegister = async function(req, res,next){
     let nav = await utilities.getNav()
-    res.render("account/registration", {
-        title: "Registration",
+    res.render("account/register", {
+        title: "Register",
         nav,
+        errors: null,
     })
 }
+
 
 module.exports = accountController;
 
