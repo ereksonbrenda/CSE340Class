@@ -1,20 +1,32 @@
 <% 
 if (title){ 
 %>
-    <h1><%= title %></h1>
+
+<h1><%= title %></h1>
 <%- messages() %>
 
-<% if (errors) { %>
-<ul class="notice>
-    <% errors.array().forEach(error => { %>
-        <li>
-            <%= error.msg %>
-        </li>
-        <% }) %>
-        </ul>
-        <% } %>
+<% 
+if (errors) { 
+%>
 
-        <form action="/account/register" method="post"></ul>
+<ul class="notice">
+
+<% 
+    errors.array().forEach(error => { 
+%>
+    <li>
+        <%= error.msg %>
+    </li>
+<%  
+    }) 
+%>
+    
+</ul>
+<% 
+}        
+%>
+
+        <form action="/account/register" method="post">
     <h2 class="formap">ALL FIELDS ARE REQUIRED.</h2>
     <div class="f-name">
         <label for="f-name">First Name</label>

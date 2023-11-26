@@ -1,0 +1,35 @@
+<h1><%= title %></h1>
+<%- messages() %>
+
+<% 
+if (errors) { 
+%>
+
+<ul class="notice">
+
+<% 
+    errors.array().forEach(error => { 
+%>
+    <li>
+        <%= error.msg %>
+    </li>
+<%  
+    }) 
+%>
+    
+</ul>
+<% 
+}        
+%>
+
+<form class="classification-add" action="/inventory/add-classification" method="post">
+    <legend>Add Classification</legend>
+    <div class="form-group">
+        <label for="classificationName">Classification Name</label>
+        <p class="input-message">No spaces or characters please!</p>
+        <input type="text" class="form-control" id="classification_name" name="classification_name" placeholder="Enter Classification Name" required value="<%= locals.classification_name %>">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+    </div>
+
+</form>

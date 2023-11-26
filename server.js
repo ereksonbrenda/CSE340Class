@@ -60,10 +60,12 @@ app.use(static)
 //Index Route
 app.get("/",utilities.handleErrors(baseController.buildHome))
 //inventory route
-app.use("/inventory", require("./routes/inventoryRoute"))
+//Is this the route I use for the add inventory form?
+//Is this how to add handle.Errors with the require?
+app.use("/inventory",require("./routes/inventoryRoute"))
 
 //account route
-app.use("/account", require("./routes/accountRoute"))
+app.use("/account",utilities.handleErrors(require("./routes/accountRoute")))  
 
 //broken route
 
@@ -74,7 +76,7 @@ const err = new Error('This is a simulated error');
   // Pass the error to the next middleware
   next(err);
 });
-// File Not Found Route - must be last route in list
+//File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })

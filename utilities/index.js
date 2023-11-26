@@ -36,7 +36,26 @@ Util.buildClassificationGrid = async function(data){
 /* **************************************
 * Build the detail view HTML
 * ************************************ */
-Util.buildDetailPage = async function(data){}
+Util.buildDetailPage = async function(data){
+}
+
+/* **************************************
+* Build the management view HTML
+* ************************************ */
+Util.buildManagementPage = async function(data){
+}
+
+/* **************************************
+* Build the add classification form HTML
+* ************************************ */
+Util.buildAddClassificationForm = async function(data){
+}
+
+/* **************************************
+* Build the add vehicle form HTML
+* ************************************ */
+Util.buildAddVehicleForm = async function(data){
+}
 
 
 /* ****************************************
