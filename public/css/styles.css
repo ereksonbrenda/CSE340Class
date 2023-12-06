@@ -496,24 +496,71 @@ input:required:valid {
   color: var(--font-color-light);
 }
 
-
-
-
-/* ================== */
 /* management page */
+.subbtn{
+  background-color: var(--background-light);
+  color: var(--font-color-light);
+  font-size:1.10em;
+  text-align: center;
+  opacity:100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 2px var(--background-dark);
+  width: auto;
+  height: auto;
+}
+.subbtn:hover {
+  background-color: var(--link-color-light);
+  color:var(--link-color-hover-light);
+  opacity: 100%;
+  transform: scale(1.2);
+}
+
+.management{
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: var(--background-dark);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  align-items: center;
+  color: var(--font-color-dark);
+  font-size: 1.10em;
+  
+}
+
 
 
 /* ================== */
 /* add vehicle page */
-
-#addVehicle{
+.inventory-add{
   background-color: var(--background-dark);
-  border:2px solid var(--background-dark);
-  box-shadow: 2px 2px 2px var(--background-dark);
-  border-radius: 4px;
+  border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
+  color: var(--font-color-dark);
+  font-size: 1.10em;
+  width: 75%;
+  margin: 0 auto;
 }
+.form-group{
+  display:flex;
+  flex-direction:column;
+  color: var(--font-color-dark);
+  padding:1rem;
+  margin: 1rem;
+  
+}
+.form-control{
+  width:75%;
+  padding: 0.5rem 1rem;
+}
+
+
+
 @media screen and (max-width: 720px) {
   .section-8-4{
     flex-direction: column;

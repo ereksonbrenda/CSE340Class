@@ -8,13 +8,15 @@
    </ul>
   <% } %>
 
-  <form class="classification-add" action="/inventory/add-classification" method="post">
+  <form class="inventory-add" action="/inventory/add-classification" method="post">
   <fieldset>
     <legend>Add Classification</legend>
     <div class="form-group">
         <label for="classificationName">Classification Name</label>
         <input type="text" class="form-control" name="classification_name" id="classificationName" placeholder="Classification Name" required>
-        <input type="submit" name="submit" id="addClassification" value="Add Classification">
     </div>
+    <div>
+      <button class="button" type="submit">Add Classification</button>
+  </div>
     </fieldset>
 </form>
