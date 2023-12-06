@@ -1,35 +1,20 @@
 <h1><%= title %></h1>
 <%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
-<% 
-if (errors) { 
-%>
-
-<ul class="notice">
-
-<% 
-    errors.array().forEach(error => { 
-%>
-    <li>
-        <%= error.msg %>
-    </li>
-<%  
-    }) 
-%>
-    
-</ul>
-<% 
-}        
-%>
-
-<form class="classification-add" action="/inventory/add-classification" method="post">
+  <form class="classification-add" action="/inventory/add-classification" method="post">
+  <fieldset>
     <legend>Add Classification</legend>
     <div class="form-group">
         <label for="classificationName">Classification Name</label>
-        <p class="input-message">No spaces or characters please!</p>
-        <input type="text" class="form-control" id="classification_name" name="classification_name" placeholder="Enter Classification Name" required value="<%= locals.classification_name %>">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        
+        <input type="text" class="form-control" name="classification_name" id="classificationName" placeholder="Classification Name" required>
+        <input type="submit" name="submit" id="addClassification" value="Add Classification">
     </div>
-
+    </fieldset>
 </form>

@@ -3,36 +3,41 @@ if (title){
 %>
     <h1><%= title %></h1>
 <%- messages() %>
-
 <% if (errors) { %>
-<ul class="notice">
-    <% errors.array().forEach(error => { %>
-        <li>
-            <%= error.msg %>
-        </li>
-        <% }) %>
-        </ul>
-        <% } %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
-<form id="loginForm" action="/account/login" method="post">
-    <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" name="account_email" id="email" class="form-control" placeholder="Enter email" required value="<%= locals.account_email %>">
+<form class="loginform" action="/account/login" method="post">
+    <div>
+        <h2>All information is required</h2>
     </div>
-    <div class="psswrd">
-        <div class="require">
-            <p>The password must have at least 8 characters, include 1 uppercase, 1 number, 1 symbol.</p>
-        </div>
-        <label for="password">Password</label>
-        <input type="password" name="account_password" id="psswrd" class="form-group" placeholder="Enter your password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{12,30}$">
+    <div class="accountwrapper">
+        <label class="accountform" for="email">Email</label>
+        <input class="accountinput" type="email" name="account_email" id="email" placeholder="enter your email" value="<%= locals.account_email %>" required/>
     </div>
 
     <div>
-    <button type="submit" class="btn btn-primary">Log in</button>
-    <p>Don't have an account?</p>
-    <a href="/account/register" class="reg">Register</a>
+        <span class="accountp">The password must contain 1 uppercase, 1 number, 1 special character, and be 12 characters long.</span>
     </div>
+
+    <div class="accountwrapper">
+        <label class="accountform" for="password">Password</label>
+        <input class="accountinput" type="password" name="account_password" id="password" placeholder="enter your password" value="<%= locals.account_password %>" required
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"/>
+    </div>
+    <div>
+        <input class="button" type="submit" value="Log In" />
+    </div>
+
 </form>
+<div class="accountp">
+        <h2>Don't have an account?</h2>
+        <a class="button" href="/acccount/register">Register</a>
+    </div>
 <% 
 } else 
     {

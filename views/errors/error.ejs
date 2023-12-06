@@ -1,14 +1,13 @@
 <% if (title) { %>
     <h1><%= title %></h1>
-<div class="bkimgerr">
-  <h2><%- message %></h2>
-
-</div>
-
 <% } else 
     {
       res.redirect('/')
-    } %>
+    } 
+%>
+
+<%- message %>
+
 
 
    

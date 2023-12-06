@@ -24,8 +24,25 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* **************************************
+* construct a dropdown menu with a select element and options of classifications
+* ************************************ */
 
-
+Util.getClassificationDropdown = async function (selectedOption) {
+  let data = await invModel.getClassifications()
+  let options = `<select name="classification_id" id="classification_id">`
+  options += `<option value="">Choose a classification</option>`
+  data.rows.forEach((row => {
+    options += 
+      `<option value="${row.classification_id}"
+      ${row.classification_id === Number(selectedOption) ? 'selected': ''}>
+      ${row.classification_name}
+      </option>`
+  }
+  ))
+  options += `</select>`
+  return options
+}
 
 /* **************************************
 * Build the classification view HTML
@@ -66,4 +83,4 @@ Util.buildAddVehicleForm = async function(data){
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 
-module.exports = Util
+module.exports = Util;

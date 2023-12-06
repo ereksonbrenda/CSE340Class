@@ -117,9 +117,7 @@ header a:hover {
   padding: 0.5rem 1rem;
 }
 
-#messages{
 
-}
 #messages .success{
   background-color: green;
   color: white;
@@ -373,58 +371,116 @@ footer {
 
 
 /*Login Page */
-form{
-  background-color: var(--link-color-dark);
-  border:2px solid var(--background-dark);
-  box-shadow: 2px 2px 2px var(--background-dark);
-  border-radius: 4px;
+form div h2{
+  color: var(--font-color-dark);
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.loginform{
+  background-color: var(--background-dark);
+  border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
+  color: var(--font-color-dark);
+  font-size: 1.10em;
+  width: 75%;
+  margin: 0 auto;
 
 }
-.form-group{
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1rem;
-}
-.btn {
-  background-color: var(--background-dark);
+
+.accountform{
   color: var(--font-color-dark);
-  font-size:1em;
+  padding:1rem;
+  margin: 1rem;
+  font-size: 1.5em;
+  
+}
+.accountwrapper{
+  display:flex;
+  flex-direction:column;
+  color: var(--font-color-dark);
+  padding:1rem;
+  margin: 1rem;
+  
+}
+.accountinput{
+  width:80%;
+  height:auto;
+  padding: 0.5rem 1rem;
+}
+.accountform::placeholder{
+  color: var(--font-color-dark);
+}
+.accountp{
+  background-color: var(--background-light);
+  color: var(--font-color-light);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+
+}
+
+
+.accountp h2{
+  color: var(--font-color-light);
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.button{
+  background-color: var(--background-light);
+  color: var(--font-color-light);
+  font-size:1.10em;
   text-align: center;
   opacity:100%;
   padding: 0.5rem 1rem;
+  margin-top: 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
   box-shadow: 2px 2px 2px var(--background-dark);
-  width: 90px;
-  height: 50px;
+  width: auto;
+  height: auto;
 }
-
-.btn:hover {
+.button:hover {
   background-color: var(--link-color-light);
-  color:var(--link-color-hover-dark);
+  color:var(--link-color-hover-light);
   opacity: 100%;
   transform: scale(1.2);
 }
 
 /* ================== */
 /* registration page */
-.formap{
-  color:#f3f3f3;
-}
-
-input {
-  background-color: var(--background-light);
-  border:2px solid var(--background-dark);
-  box-shadow: 2px 2px 2px var(--background-dark);
-  border-radius: 4px;
-  color: var(--font-color-dark);
+.registerform{
+  background-color: var(--background-dark);
+  border-radius: 0.5rem;
   padding: 1rem;
   margin: 1rem;
+  color: var(--font-color-dark);
+  font-size: 1.10em;
+  width: 75%;
+  margin: 0 auto;
 }
+
+.registerdiv{
+  display:flex;
+  flex-direction:column;
+  color: var(--font-color-dark);
+  padding:1rem;
+  margin: 1rem;
+  
+}
+.registerinput{
+  width:75%;
+  padding: 0.5rem 1rem;
+}
+
+
 input:required:invalid, input:focus:invalid {
   background-color: #ffdddd;
   background-position: right top;
@@ -439,80 +495,10 @@ input:required:valid {
   background-size: 20px;
   color: var(--font-color-light);
 }
-.require{
-  border:2px solid var(--background-dark);
-  box-shadow: 2px 2px 2px var(--background-dark);
-  border-radius: 4px;
-  color: var(--font-color-dark);
-  padding: 1rem;
-  margin: 1rem;
 
-}
-.require p{
-  color: var(--font-color-dark);
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-label{
-  color: var(--font-color-dark);
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-.subbtn{
-  background-color: var(--background-dark);
-  color: var(--font-color-dark);
-  font-size:1em;
-  text-align: center;
-  opacity:100%;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  box-shadow: 2px 2px 2px var(--background-dark);
-  width: 150px;
-  height: 100px;
-}
-.subbtn:hover {
-  background-color: var(--link-color-light);
-  color:var(--link-color-hover-dark);
-  opacity: 100%;
-  transform: scale(1.2);
-} 
 
-.psswrd{
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1rem;
-} 
-.eml, .f-name, .l-name, .psswrd, .psswrd2{ 
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1rem;
-}
 
-.reg{
-  background-color: var(--background-dark);
-  color: var(--font-color-dark);
-  font-size:1em;
-  text-align: center;
-  opacity:100%;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  box-shadow: 2px 2px 2px var(--background-dark);
-  width: 150px;
-  height: 100px;
 
-}
-.reg:hover {
-  background-color: var(--link-color-light);
-  color:var(--link-color-hover-dark);
-  opacity: 100%;
-  transform: scale(1.2);
-}
 /* ================== */
 /* management page */
 

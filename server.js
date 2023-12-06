@@ -33,17 +33,17 @@ app.use(session({
 }))
 
 
- //Express Messages Middleware
- app.use(require('connect-flash')())
- app.use(function(req, res, next){
-    res.locals.messages = require('express-messages')(req, res)
-    next()
- })
+ // Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 //Body Parser Middleware
 app.use(bodyParser.json())
 //for parsing application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))// for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * view Engine and Templates
@@ -56,19 +56,15 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use(require("./routes/static"));
+//account routes
+app.use("/account",require("./routes/accountRoute"));
+//inventory routes
+app.use("/inventory",require("./routes/inventoryRoute"));
 //Index Route
-app.get("/",utilities.handleErrors(baseController.buildHome))
-//inventory route
-//Is this the route I use for the add inventory form?
-//Is this how to add handle.Errors with the require?
-app.use("/inventory",require("./routes/inventoryRoute"))
-
-//account route
-app.use("/account",utilities.handleErrors(require("./routes/accountRoute")))  
+app.get("/", utilities.handleErrors(baseController.buildHome));
 
 //broken route
-
 app.get('/broken', (req, res, next) => {
     // Create an error object
 const err = new Error('This is a simulated error');
@@ -76,25 +72,23 @@ const err = new Error('This is a simulated error');
   // Pass the error to the next middleware
   next(err);
 });
+
 //File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+  next({status: 404, message: 'well, sorry, we appear to have lost that page.'});
+});
 
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
+* Unit 3 error handling.
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
-  let systemErrorMessage = 'OOps there is an error with the system! Please try again later.';
-  let defaultErrorMessage = 'Oh no! There was a crash. Maybe try a different route?';
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 500){ message = err.message} else {message = systemErrorMessage}
-  if(err.status == 404){ message = err.message} else {message = defaultErrorMessage}
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There must have been a terrible crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    //message: err.message,
     message,
     nav
   })
@@ -107,13 +101,9 @@ app.use(async (err, req, res, next) => {
 const port = process.env.PORT
 const host = process.env.HOST
 
-
 /* ***********************
  * Log statement to confirm server operation
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
-
-
-

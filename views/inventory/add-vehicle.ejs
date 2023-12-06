@@ -1,31 +1,22 @@
-<h1><%= title %></h1>
-<%- messages() %>
+<h1><%-title%></h1>
+<%-messages()%>
 
-<% 
-if (errors) { 
-%>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
-<ul class="notice">
-
-<% 
-    errors.array().forEach(error => { 
-%>
-    <li>
-        <%= error.msg %>
-    </li>
-<%  
-    }) 
-%>
-    
-</ul>
-<% 
-}        
-%>
 
 <form class="inventory-add" action="/inventory/add-vehicle" method="post">
-    <legend>Add Inventory</legend>
-    <div class="form-group">        
-        <select class="form-control" name="classification_id" id="classificationId" placeholder="Classification" required >
+    <fieldset>
+        <legend>Add Inventory</legend>
+            <div class="form-group">
+                <select class="form-control" name="classification_id" id="classificationId" required >
+                    <option value="">Select a Classification</option>
+
             <%
         if (classifications.length > 0) {
             classifications.forEach(classification => { 
@@ -37,19 +28,59 @@ if (errors) {
         }
     %>
 
-        </select> 
-        <input type="text" class="form-control" name="inv_make" id="invMake" placeholder="Make" required>
-        <input type="text" class="form-control" name="inv_model" id="invModel" placeholder="Model" required>
-        <input type="number" class="form-control" name="inv_year" id="invYear" placeholder="Year" required>        
-        <input type="text" class="form-control" name="inv_color" id="invColor" placeholder="Color" required>
-        <input type="number" class="form-control" name="inv_miles" id="invmiles" placeholder="Miles" required>
-        <input type="number" class="form-control" name="inv_price" id="invPrice" placeholder="Price" required>
-        <input type="text" class="form-control" name="inv_description" id="invDescription" placeholder="Description" required>
-        <input type="text" class="form-control" name="inv_image" id="invImage" value="/images/vehicles/no-image.png" required>
-        <input type="text" class="form-control" name="inv_thumbnail" id="invThumbnail" value="/images/vehicles/no-image-tn.png" required>
-        
-        <input type="submit" name="submit" id="addVehicle" value="Add Vehicle">   
+                </select> 
+            </div>
 
+
+    <div class="form-group">
+        <label for="invMake">Make</label>
+            <input type="text" class="form-control" name="inv_make" id="invMake" placeholder="Make"
+                value= "<%=locals.inv_make%>" required>
+    </div>
+    <div class="form-group">
+        <label for="invModel">Model</label>
+            <input type="text" class="form-control" name="inv_model" id="invModel" placeholder="Model" 
+                value="<%=locals.inv_model%>" required>
+    </div>
+    <div class="form-group">
+        <label for="invYear">Year</label>
+            <input type="text" class="form-control" name="inv_year" id="invYear" placeholder="Year" 
+                value="<%=locals.inv_year%>" required>
+    </div>
+    <div class="form-group">
+        <label for="invColor">Color</label>
+            <input type="text" class="form-control" name="inv_color" id="invColor" placeholder="Color" 
+                value="<%=locals.inv_color%>" required>
+    </div>
+    <div class="form-group">
+        <label for="invMiles">Miles</label>
+            <input type="number" class="form-control" name="inv_miles" id="invMiles" placeholder="Miles" 
+                value="<%=locals.inv_miles%>" required>
+    </div>
+    <div class="form-group">
+        <label for="invPrice">Price</label>
+            <input type="number" class="form-control" name="inv_price" id="invPrice" placeholder="Price" 
+                value="<%=locals.inv_price%>" required>
+    
+    <div class="form-group">
+        <label for="invDescription">Description</label>
+            <input type="text" class="form-control" name="inv_description" id="invDescription" placeholder="Description" 
+                value="<%=locals.inv_description%>" required>
+    </div>
+    </div>
+    <div class="form-group">
+        <label for="invImage">Image</label>
+            <input type="text" class="form-control" name="inv_image" id="invImage" placeholder="Image" 
+                required>
+    </div>
+    <div class="form-group">
+        <label for="invThumbnail">Thumbnail</label>
+            <input type="text" class="form-control" name="inv_thumbnail" id="invThumbnail" placeholder="Thumbnail" 
+                 required>
+    </div>
+    <div class="form-group">
+        <button type="submit" name="submit" id="addVehicle" value="Add Vehicle">Add Vehicle</button>  
     </div>
 
+</fieldset>
 </form>
