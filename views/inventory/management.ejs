@@ -13,3 +13,16 @@
 <a title="Click to add Class" href="/inventory/add-classification" class="subbtn">Add new Classification</a>
 <a title="Click to add Vehicle" href="/inventory/add-vehicle" class="subbtn">Add new Vehicle</a>
 </div>
+
+<h2>Manage Inventory</h2>
+<p>Choose from the classification drop down list</p>
+
+<select id="selectclass" class="inventory-management" name="classification_id">
+<%-classificationDropDown%>
+</select>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>

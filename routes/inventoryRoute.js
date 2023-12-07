@@ -3,6 +3,8 @@ const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
+const { body, validationResult } = require("express-validator")
+const validate = {}
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -15,7 +17,18 @@ router.get('/add-vehicle', invController.buildAddVehicleForm);
 router.post("/add-classification", invController.addClassification);
 router.post("/add-vehicle", invController.addVehicle);
 
-//Do I need a new route for adding inventory and classification?
-//router.get("/add", invController.buildAddForm);
+//add new route that works with the new URL in the javascript file
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+//add route for editing inventory items
+router.get("/edit/:inv-id", utilities.handleErrors(invController.buildInventoryEditForm));
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
+//add validation to these routes and the add vehicle route classification route.
+
+//router to delete inventory items
+ router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView))
+ router.post("/delete", utilities.handleErrors(invController.deleteItem))
+
+
 
 module.exports = router;

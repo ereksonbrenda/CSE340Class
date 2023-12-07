@@ -1,43 +1,52 @@
+'use strict'
 
-'use strict';
-
-let classificationList = document.querySelector("#classification_id");
-classificationList.addEventListener("change", function () {
-let classification_id = classificationList.value;
-  //console.log(`classification_id is: ${classification_id}`);
-let classIdURL = "/inv/getInventory/" + classification_id;
-  fetch(classIdURL)
+// get the list of items in the inventory from classification_id
+let classificationList = document.querySelector('#classificationList')
+    classificationList.addEventListener('change', function() {
+    let classification_id = classificationList.value;
+    console.log(`classification_id: ${classification_id}`)
+    // get the inventory from the server
+    let classIDURL ="/inv/getInventory/" + classification_id
+    
+    fetch(classIDURL)
     .then(function (response) {
       if (response.ok) {
-        return response.json(); 
+        return response.json()
       }
-      throw Error("Network response was not OK");
+      throw new Error('Network response was not ok.')
     })
 
     .then(function (data) {
+      console.log(data);
       buildInventoryList(data);
     })
 
     .catch(function (error) {
-      //console.log('There was a problem: ', error.message);
-    });
-});
+      console.log(
+        'There has been a problem with your fetch operation: ',
+        error.message
+      )
+    })
+})
 
-// Build inventory items into HTML table components and inject into DOM 
-function buildInventoryList(data) { 
-    let inventoryDisplay = document.getElementById("inventoryDisplay"); 
-    let dataTable = '<thead>'; 
-    dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
-    dataTable += '</thead>'; 
-    //this is the boddy of the table
-    dataTable += '<tbody>'; 
-  // Iterate over the collection of data in rows
-    data.forEach(function (element) { 
-     console.log(element.inv_id + ", " + element.inv_model); 
-     dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`; 
-     dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`; 
-     dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`; 
-    }) 
-    dataTable += '</tbody>'; 
-    inventoryDisplay.innerHTML = dataTable;//goes to management view page
-   }
+// build the inventory list
+function buildInventoryList(data) {
+  let inventoryDisplay = document.querySelector('#inventoryDisplay');
+  // Set up the table labels
+  let dataTable = '<thead>';
+  dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
+  dataTable += '</thead>';
+  // Set up the table body
+  dataTable += '<tbody>';
+  // Iterate over all vehicles in the array and put each in a row
+  data.forEach(function (element) {
+    console.log(element.inv_id + "," + element.inv_model);
+    dataTable += '<tr><td>${element.inv_make} ${element.inv_model}</td>';
+    dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to Update'>Modify</a></td>`;
+    dataTable += `<td><a href="/inv/delete/${element.inv_id}" title='Click to delete>Delete</a></td>`;
+  })
+  dataTable += '</tbody>';
+   
+  // Display the inventory in the table in the management view
+  inventoryDisplay.innerHTML = dataTable;
+}

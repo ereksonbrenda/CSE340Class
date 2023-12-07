@@ -1,0 +1,38 @@
+<h1><%-title%></h1>
+<%-messages()%>
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <form class="inventory-delete" action="/inv/delete" method="post">
+    <fieldset>
+      <legend>Delete</legend>
+      <div class="form-group">
+          <label for="inv_make">Make:</label>
+          <input type="text" class="form-control" name="inv_make" id="inv_make" placeholder="Must have 2 characters" 
+          pattern=".{2,}" value = "<%locals.inv_make %>" readonly required>
+      </div>
+
+      <div class="form-group">
+        <label for="inv_model">Model:</label>
+        <input type="text" class="form-control" name="inv_model" id="inv_model" placeholder="Must have 2 characters" 
+        pattern=".{2,}" value = "<%locals.inv_model %>" readonly required>
+    </div>
+
+    <div class="form-group">
+        <label for="inv_year">Year:</label>
+        <input type="number" class="form-control" name="inv_year" id="inv_year" placeholder="Must have 4 numbers" 
+        pattern="^\d{4}$" value = "<%locals.inv_year %>" readonly required>
+    </div>
+      <div>
+        <p>Are you sure you want to delete this vehicle? Deletion is permanent</p>
+        <button class="button" type="submit">DELETE</button>
+        <input type="hidden" name="inv_id" value="<%locals.inv_id%>">
+    </div>
+      </fieldset>
+  </form>

@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -28,19 +30,19 @@ Util.getNav = async function (req, res, next) {
 * construct a dropdown menu with a select element and options of classifications
 * ************************************ */
 
-Util.getClassificationDropdown = async function (selectedOption) {
+/* ************************
+ * Build classification dropdown
+ ************************** */
+Util.buildClassificationList = async function (selectedOption) {
   let data = await invModel.getClassifications()
-  let options = `<select name="classification_id" id="classification_id">`
-  options += `<option value="">Choose a classification</option>`
+  let options = `<option value="">Choose a classification</option>`
   data.rows.forEach((row => {
     options += 
       `<option value="${row.classification_id}"
       ${row.classification_id === Number(selectedOption) ? 'selected': ''}>
       ${row.classification_name}
       </option>`
-  }
-  ))
-  options += `</select>`
+  }))
   return options
 }
 
@@ -82,5 +84,60 @@ Util.buildAddVehicleForm = async function(data){
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+/* ****************************************
+ * Middleware for checking JWT token
+ * login activity
+ **************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (reg.cookies.jwt) {
+    jwt.verify, reg.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+      if (err) {
+        req.flash("notice", "Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+      }
+      res.locals.acountData = accountData
+      res.locals.loggedin = 1
+      next()
+    }}
+    else {
+      next()
+    }
+  }
+  
+  /* ****************************************
+   * Check Login
+   **************************************** */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ *  Check user authorization, block unauthorized users
+ * ************************************ */
+Util.checkAccountType = async (req, res, next) => {
+  // auth : 0
+  let auth = 0
+  // logged in ? next : 0
+  if (res.locals.loggedin) {
+    const account = res.locals.accountData
+    account.account_type == "Admin" 
+      || account.account_type == "Employee" ? auth = 1 : auth = 0 
+  }
+  if (!auth) {
+    req.flash("notice", "Please log in")
+    res.redirect("/account/login")
+    return
+  } else {
+    next()
+  }
+}
 
 module.exports = Util;

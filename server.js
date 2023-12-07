@@ -4,22 +4,30 @@
  *******************************************/
 /* ***********************
  * Require Statements
- *************************/
-const session = require("express-session")
-const pool = require('./database/')
+  *************************/
+
+
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
-const app = express()
-const bodyParser = require("body-parser")
-const static = require("./routes/static")
+  require("dotenv").config()
 const baseController=require("./controllers/baseController")
 const utilities = require("./utilities")
-const inventoryRoute = require("./routes/inventoryRoute")
-const accountRoute = require("./routes/accountRoute")
+const session = require("express-session")
+const pool = require('./database/')
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
+const app = express()
+
+
+//const static = require("./routes/static")
+//const inventoryRoute = require("./routes/inventoryRoute")
+//const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
+ * Between the request and the response
  * ************************/
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -32,9 +40,9 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// Express Messages Middleware
+app.use(require('connect-flash')());
 
- // Express Messages Middleware
-app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
@@ -44,6 +52,12 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 //for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))// for parsing application/x-www-form-urlencoded
+
+//Cookie Parser Middleware week5
+app.use(cookieParser())
+//Login Processing Middleware
+app.use(utilities.checkJWTToken)
+
 
 /* ***********************
  * view Engine and Templates
@@ -58,11 +72,13 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(require("./routes/static"));
 //account routes
-app.use("/account",require("./routes/accountRoute"));
+app.use("/account", require("./routes/accountRoute"));
 //inventory routes
-app.use("/inventory",require("./routes/inventoryRoute"));
-//Index Route
+app.use("/inv",require("./routes/inventoryRoute"));
+//build base route
 app.get("/", utilities.handleErrors(baseController.buildHome));
+
+//app.use("/error", errorRoute);
 
 //broken route
 app.get('/broken', (req, res, next) => {
@@ -87,6 +103,7 @@ app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if(err.status == 404){ message = err.message} else {message = 'Oh no! There must have been a terrible crash. Maybe try a different route?'}
+  if(err.status == 500){ message = err.message} else {message = 'Oh Shoot, you hit a pothole, let me call a trucker, oh yeah, I can\t, I am a pothole!'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,

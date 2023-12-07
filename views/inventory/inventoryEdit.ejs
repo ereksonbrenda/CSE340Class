@@ -10,9 +10,9 @@
   <% } %>
 
 
-<form class="inventory-add" action="/inventory/add-vehicle" method="post">
+<form class="inventory-add" id="updateForm" action="/inv/update/" method="post">
     <fieldset>
-        <legend>Add Inventory</legend>
+        <legend>Modify Inventory</legend>
             <div class="form-group">
                 <select class="form-control" name="classification_id" id="classificationId" required >
                 <%-classificationDropDown%>
@@ -66,8 +66,20 @@
                  required>
     </div>
     <div>
-        <button class="button" type="submit">Add Vehicle</button>
+        <button class="button" type="submit" disabled>Modify Vehicle</button>
     </div>
+
+    <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } %>>
 
 </fieldset>
 </form>
+
+<script>
+const form = document.querySelector("#updateForm")
+    form.addEventListener("change", function () {
+      const updateBtn = document.querySelector("button")
+      updateBtn.removeAttribute("disabled")
+    })
+</script>

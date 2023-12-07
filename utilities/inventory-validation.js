@@ -93,6 +93,26 @@ validate.checkVehicleData = async (req, res, next) => {
 }
 
 /*  **********************************
+* Check Update data and return to inventory form or continue to inventory
+* ********************************* */
+validate.checkUdateData = async (req, res, next) => {
+    const { classification_id, inv_make, inv_model, inv_year, inv_color, inv_miles, inv_price, inv_description, inv_image, inv_thumbnail, inv_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.status(400).render("./inventory/inventoryEdit", {
+            title: "Inventory Edit",
+            nav,
+            classifications: null,
+            errors: errors.array(),
+        })
+    } else {
+        next()
+    }
+}
+
+/*  **********************************
  *  Classification Data Validation Rules
 * ********************************* */
 
