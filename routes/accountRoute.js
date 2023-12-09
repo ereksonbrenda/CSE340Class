@@ -12,39 +12,40 @@ const regValidate = require('../utilities/account-validation')
 * Stickyness activity
 ************************** */
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
-router.post("/login", 
-    regValidate.loginRules(), 
-    regValidate.checkLoginData,
+router.post("/login",
+    //regValidate.loginRules(), 
+    //regValidate.checkLoginData,
     utilities.handleErrors(accountController.accountLogin));
+
     
 /* ************************
 * Deliver Registration View
 ************************** */
 
-router.get("/register", utilities.handleErrors(accountController.buildRegister));
+router.get("/register", accountController.buildRegister);
 
-router.post("/register",
+router.post ("/register",
     regValidate.registationRules(), 
     regValidate.checkRegData,
-    utilities.handleErrors(accountController.accountRegister));
+    accountController.accountRegister);
 
 
 /* ************************
  * Deliver Account Management View
     ************************** */
-   router.get("/", utilities.checkLogin,
-   utilities.handleErrors(accountController.buildAccountManagementView))
+router.get("/", utilities.checkLogin,
+utilities.handleErrors(accountController.buildAccountManagementView))
 
 
 //router for building account update login
 router.get("/edit/:account_id", 
-utilities.handleErrors(accountController.buildAccountUpdateView));
+utilities.handleErrors(accountController.buildEditAccount));
 
 //router for Updating account
 // Process the updated account information
-router.post("/accountupdate",
-    regValidate.updateAccountRules(),
-    regValidate.checkEditAccountData,
+router.post("/editAccount",
+    //regValidate.updateAccountRules(),
+    //regValidate.checkEditAccountData,
     utilities.handleErrors(accountController.editAccountInfo)
   );
   
@@ -55,5 +56,35 @@ router.post("/accountupdate",
     utilities.handleErrors(accountController.editAccountPassword)
   );
 
+/* ************************
+  * Deliver Employee Management View
+  ************************** */
+ //router for building employee management view
 
+ /* ************************
+
+router.get("/employee", utilities.checkLogin,
+utilities.checkAdmin,
+utilities.handleErrors(accountController.buildEmployeeManagementView));
+
+//router for building employee list
+router.get("/employeelist",
+utilities.checkLogin,
+utilities.checkAdmin,
+utilities.handleErrors( accountController.buildEmployeeListView));
+
+//router for adding employee
+router.post("/employeeadd",
+utilities.checkLogin,
+utilities.checkAdmin,
+utilities.handleErrors(accountController.addEmployee));
+
+//router for deleting employee
+router.post("/employeedelete",
+utilities.checkLogin,
+utilities.checkAdmin,
+utilities.handleErrors(accountController.deleteEmployee));
+
+
+/******************* */
 module.exports = router;

@@ -1,10 +1,10 @@
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
-const inventoryModel = require("../models/inventory-model")
+const invModel = require("../models/inv-model")
 const validate = {}
 
 /*  **********************************
- *  Inventory Data Validation Rules
+ *  Inv Data Validation Rules
 * ********************************* */
 
 validate.vehicleRules = () => {
@@ -73,7 +73,7 @@ validate.vehicleRules = () => {
     }
 
 /* ******************************
-* Check data and return to inventory form or continue to inventory      
+* Check data and return the inv form or continue to inv      
 * ***************************** */
 validate.checkVehicleData = async (req, res, next) => {
     const { classification_id, inv_make, inv_model, inv_year, inv_color, inv_miles, inv_price, inv_description, inv_image, inv_thumbnail } = req.body
@@ -81,7 +81,7 @@ validate.checkVehicleData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        res.status(400).render("./inventory/add-vehicle", {
+        res.status(400).render("./inv/add-vehicle", {
             title: "Add Vehicle",
             nav,
             classifications: null,
@@ -93,7 +93,7 @@ validate.checkVehicleData = async (req, res, next) => {
 }
 
 /*  **********************************
-* Check Update data and return to inventory form or continue to inventory
+* Check Update data and return to inv form or continue to inv
 * ********************************* */
 validate.checkUdateData = async (req, res, next) => {
     const { classification_id, inv_make, inv_model, inv_year, inv_color, inv_miles, inv_price, inv_description, inv_image, inv_thumbnail, inv_id } = req.body
@@ -101,8 +101,8 @@ validate.checkUdateData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        res.status(400).render("./inventory/inventoryEdit", {
-            title: "Inventory Edit",
+        res.status(400).render("./inv/edit", {
+            title: "Inv Edit",
             nav,
             classifications: null,
             errors: errors.array(),
@@ -136,7 +136,7 @@ validate.checkClassificationData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        res.status(400).render("./inventory/add-classification", {
+        res.status(400).render("./inv/add-classification", {
             title: "Add Classification",
             nav,
             errors: errors.array(),

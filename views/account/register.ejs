@@ -1,16 +1,26 @@
 <% 
-if (title){ 
+if (title){
 %>
-    <h1><%= title %></h1>
+<h1><%= title %></h1>
 
 <%- messages() %>
-<% if (errors) { %>
-  <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
-<% } %>
+
+<% 
+    if (errors) { 
+%>
+        <ul class="notice"> 
+
+<%     
+        errors.array().forEach(error => { 
+%>
+            <li><%= error.msg %></li>
+<%  
+        }) 
+%>
+        </ul>
+<% 
+    } 
+%>
 
 <form class="registerform" action="/account/register" method="post">
     <div>
@@ -36,3 +46,8 @@ if (title){
     </div>
     </div>
 </form>
+<% 
+} else {
+    res.redirect('/')
+}
+%>

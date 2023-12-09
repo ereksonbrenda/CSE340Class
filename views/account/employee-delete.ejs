@@ -1,0 +1,44 @@
+<h1><%= title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <h2>This is the DELETE Employee Form</h2>
+  <p>Are you sure you are on the correct page? DELETE can not be undone.</p>
+
+  <form class="inv-add" action="/account/employee-management" method="post">
+    <fieldset>
+      <legend>Delete</legend>
+      <div class="form-group">
+          <label for="account_firstname">First Name</label>
+          <input type="text" class="form-control" name="account_firstname" id="account_firstname" 
+          placeholder="Must have 2 characters" 
+          pattern=".{2,}" value = "<% locals.account_firstname %>" readonly required>
+      </div>
+
+      <div class="form-group">
+        <label for="account_lastname">Last Name</label>
+        <input type="text" class="form-control" name="account_lastname" id="account_lastname" 
+        placeholder="Must have 2 characters" 
+        pattern=".{2,}" value = "<%locals.account_lastname %>" readonly required>
+    </div>
+
+    <div class="form-group">
+        <label for="account_type">Employee or Admin</label>
+        <input type="text" class="form-control" name="account_type" id="account_type" 
+        placeholder="Employee or Admin" 
+        value = "<%locals.account_type %>" readonly required>
+    </div>
+
+      <div>
+        <p>Are you sure you want to delete this employee? DELETION is permanent</p>
+        <button class="button" type="submit">DELETE</button>
+        <input type="hidden" name="account_id" value="<%locals.account_id%>">
+    </div>
+      </fieldset>
+  </form>

@@ -10,21 +10,21 @@ DELETE FROM public.account
 	WHERE account_id = 1;
 
 
-UPDATE public.inventory
+UPDATE public.inv
 	SET inv_description='small interiors', 'a huge interior'
 	WHERE account_id = 10;
 
 SELECT inv_model,inv_make,
 classification
 FROM
-inventory
+inv
 INNER JOIN classification
-ON inventory.classification_id = classification.classification_id
+ON inv.classification_id = classification.classification_id
 WHERE classification_name = 'Sport';
 
-UPDATE public.inventory
+UPDATE public.inv
 SET inv_image = REPLACE(inv_image, 'image', 'image/vehicle');
-UPDATE public.inventory
+UPDATE public.inv
 SET inv_thumbnail = REPLACE(inv_thumbnail, 'image', 'image/vehicle');
 
 

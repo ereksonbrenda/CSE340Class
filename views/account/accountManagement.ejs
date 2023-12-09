@@ -1,26 +1,26 @@
-<% if (title){ %>
-  <h1><%= title %></h1>
+<h1><%= title %></h1>
 <%- messages() %>
 <% if (errors) { %>
-  <ul class="notice">
-<% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
-<% } %>
-<% } %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
-<% let account = locals.accountData %>
-  <% if (locals.loggedin) { %>
-    <h2>Welcome <%= locals.accountData.account_firstname %></h2>
-      <div class="manageaccount">
-        <a href="/account/edit/<%= locals.accountData.account_id %>">Manage Account Information</a>
+
+    <% let account = locals.accountData %>
+    <% if (locals.loggedin) { %>
+      <h2>Welcome <%= locals.accountData.account_firstname %></h2>
+      <div class="inv-form">
+        <a href="/account/edit/<%= locals.accountData.account_id %>">Manage Your Account Information</a>
       </div>
-        
-  <% if (account.account_type == "Employee" || account.account_type == "Admin") { %>
-    <h3>Inventory Management</h3>
-      <div class="manageaccount">
-        <a href="/inv/">Manage inventory</a>
-      </div>
-<% } %>
+    
+      <% if (account.account_type == "Employee" || account.account_type == "Admin") { %>
+        <h3>Inv Management</h3>
+        <div class="inv-form">
+          <a href="./inv/management">Manage Inv</a>
+        </div>
+
+    <% } %>
 <% } %>

@@ -1,0 +1,50 @@
+<h1><%= title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+
+<h2>Fill Out The Form To Add A New Employee</h2>
+
+<form class="inv-add" action="/account/employee-management" method="post">
+    
+    <fieldset>
+        <legend>Add Employee</legend>
+
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="account_firstname" id="account_firstname" placeholder="First Name"
+                value= "<%=locals.account_firstname%>" required>
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" name="account-account_lastname" id="account_lastname" placeholder="Last Name" 
+                value="<%=locals.account_lastname%>" required>            
+    </div>
+
+    <div>
+        <span class="accountp">The password must contain 1 uppercase, 1 number, 1 special character, and be 12 characters long.</span>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+            <input type="email" class="form-control" name="account_email" id="account_email" placeholder="Email Address" 
+                value="<%=locals.account_email%>" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+    </div>
+    <div class="form-group">
+        <label for="account_type">Account Type</label>
+            <input type="text" class="form-control" name="account_type" id="account_type" placeholder="Admin or Employee" 
+                value="<%=locals.account_type%>" required>
+    </div>
+     
+    <div>
+        <button class="button" type="submit">Add Employee</button>
+    </div>
+
+</fieldset>
+</form>

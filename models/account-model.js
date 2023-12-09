@@ -32,13 +32,13 @@ async function checkExistingEmail(account_email){
 }
 
 /* *****************************
-* Return account data using email
-* *************************** */
-
-async function getAccountByEmail(account_email){
+* Return account data using email address
+* ***************************** */
+async function getAccountByEmail (account_email) {
   try {
-    const result = await pool.query('SELECT account_id, account_firstname, account-lastname, account_email, account_password FROM account WHERE account_email = $1', 
-    [account_email])
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
+      [account_email])
     return result.rows[0]
   } catch (error) {
     return new Error("No matching email found")
@@ -47,7 +47,7 @@ async function getAccountByEmail(account_email){
 
 /* *****************************
  * Check for user email
-  * *************************** */
+  
 async function checkUserEmail(account_email){
   try {
     const sql = "SELECT * FROM account WHERE account_email = $1"
@@ -58,7 +58,7 @@ async function checkUserEmail(account_email){
     return error.message
   }
 }
-
+* *************************** */
 /* *****************************
  * Return account data using email
  * *************************** */
@@ -139,13 +139,99 @@ async function changeAccountPassword(account_password, account_id) {
   }
 }
 
+/* *****************************
+* Build employee management view
+* *************************** */
+async function buildEmployeeManagementView(){
+  try {
+    const result = await pool.query('SELECT account_firstname, account_lastname, account_email, account_type, account_id FROM account WHERE account_id= $1', 
+    ['Employee' || 'Admin'])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching employee or admin found")
+  }
+}
+
+
+/* *****************************
+ * Employee list for admin using account_type
+  * *************************** */
+async function getEmployeeList(){
+  try {
+    const result = await pool.query('SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account WHERE account_type = $1', 
+    ['Employee'])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching employee found")
+  }
+}
+
+/* *****************************
+*Build employee add view
+* *************************** */
+async function buildEmployeeAddView(){
+  try {
+    const result = await pool.query('SELECT account_firstname, account_lastname, account_email, account_type, account_id FROM account WHERE account_id= $1', 
+    ['Employee' || 'Admin'])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching employee or admin found")
+  }
+}
+/* *****************************
+* Build employee delete view
+* ***************************** */
+async function buildEmployeeDeleteView(){
+  try {
+    const result = await pool.query('SELECT account_firstname, account_lastname, account_email, account_type, account_id FROM account WHERE account_id= $1', 
+    ['Employee' || 'Admin'])
+    return result.rows
+  } catch (error) {
+    return new Error("No matching employee or admin found")
+  }
+}
+
+/* *****************************
+  * Add employee using account_id
+    * *************************** */
+async function addEmployee(account_firstname, account_lastname, account_email, account_type){
+  try {
+    const result = await pool.query('INSERT INTO account (account_firstname, account_lastname, account_email, account_type) VALUES ($1, $2, $3, $4) RETURNING *', 
+    [account_firstname, account_lastname, account_email, account_type])
+    return result.rows[0]
+  } catch (error) {
+    return new Error("No matching employee found")
+  }
+}
+
+/* *****************************
+ * Delete employee using account_id
+  * *************************** */
+async function deleteEmployee(account_id){
+  try {
+    const result = await pool.query('DELETE FROM account WHERE account_id = $1', 
+    [account_id])
+    return result.rowCount
+  } catch (error) {
+    return new Error("No matching employee found")
+  }
+}
+
+
+
 module.exports = {
   accountRegister, 
   checkExistingEmail, 
-  getAccountByEmail, 
-  checkUserEmail, 
+  getAccountByEmail,  
   getAccountByEmail, 
   checkPassword,
   getAccountById,
   updateAccountInfo,
-  changeAccountPassword}
+  changeAccountPassword,
+  buildEmployeeManagementView,
+  getEmployeeList,
+  buildEmployeeAddView,
+  addEmployee,
+  buildEmployeeDeleteView,
+  deleteEmployee
+}

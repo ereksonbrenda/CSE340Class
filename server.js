@@ -22,7 +22,7 @@ const app = express()
 
 
 //const static = require("./routes/static")
-//const inventoryRoute = require("./routes/inventoryRoute")
+//const invRoute = require("./routes/invRoute")
 //const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
@@ -71,12 +71,12 @@ app.set("layout", "./layouts/layout") // not at views root
  * Routes
  *************************/
 app.use(require("./routes/static"));
+//build base route
+app.get("/", baseController.buildHome);
+//inv routes
+app.use("/inv", require("./routes/invRoute"));
 //account routes
 app.use("/account", require("./routes/accountRoute"));
-//inventory routes
-app.use("/inv",require("./routes/inventoryRoute"));
-//build base route
-app.get("/", utilities.handleErrors(baseController.buildHome));
 
 //app.use("/error", errorRoute);
 
@@ -110,6 +110,8 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
+
 
 /* ***********************
  * Local Server Information

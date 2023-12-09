@@ -10,19 +10,19 @@
 
 <div class="management">
 <%#need two links one to trigger "add new classification view" and one to trigger "add new vehicle view"%>   
-<a title="Click to add Class" href="/inventory/add-classification" class="subbtn">Add new Classification</a>
-<a title="Click to add Vehicle" href="/inventory/add-vehicle" class="subbtn">Add new Vehicle</a>
+<a title="Click to add Class" href="/inv/add-classification" class="subbtn">Add new Classification</a>
+<a title="Click to add Vehicle" href="/inv/add-vehicle" class="subbtn">Add new Vehicle</a>
 </div>
 
-<h2>Manage Inventory</h2>
+<h2>Manage Inv</h2>
 <p>Choose from the classification drop down list</p>
 
-<select id="selectclass" class="inventory-management" name="classification_id">
+<select id="selectclass" class="inv-management" name="classification_id">
 <%-classificationDropDown%>
 </select>
 
-<table id="inventoryDisplay"></table>
+<table id="invDisplay"></table>
 
 <noscript>JavaScript must be enabled to use this page.</noscript>
 
-<script src="../../js/inventory.js"></script>
+<script src="../../js/inv.js"></script>

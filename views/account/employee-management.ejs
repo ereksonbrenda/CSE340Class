@@ -1,0 +1,38 @@
+<% if (title){ %>
+  <h1><%= title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+<% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+<% } %>
+
+  <h2>Employee List</h2>
+    <table>
+        <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Account Type</th>
+        </tr>
+        <% locals.employeeList.forEach(employee => { %>
+        <tr>
+            <td><%= employee.account_id %></td>
+            <td><%= employee.account_firstname %></td>
+            <td><%= employee.account_lastname %></td>
+            <td><%= employee.account_email %></td>
+            <td><%= employee.account_type %></td>
+        </tr>
+        <% }) %>
+    </table>
+    <br>
+    <a href="/account/employee-add">Add Employee</a>
+    <br>
+    <a href="/account/employee-delete">Delete Employee</a>
+    <br>
+    
+   

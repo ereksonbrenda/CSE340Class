@@ -1,12 +1,12 @@
 'use strict'
 
-// get the list of items in the inventory from classification_id
+// get the list of items in the inv from classification_id
 let classificationList = document.querySelector('#classificationList')
     classificationList.addEventListener('change', function() {
     let classification_id = classificationList.value;
     console.log(`classification_id: ${classification_id}`)
-    // get the inventory from the server
-    let classIDURL ="/inv/getInventory/" + classification_id
+    // get the inv from the server
+    let classIDURL ="/inv/getInv/" + classification_id
     
     fetch(classIDURL)
     .then(function (response) {
@@ -18,7 +18,7 @@ let classificationList = document.querySelector('#classificationList')
 
     .then(function (data) {
       console.log(data);
-      buildInventoryList(data);
+      buildInvList(data);
     })
 
     .catch(function (error) {
@@ -29,9 +29,9 @@ let classificationList = document.querySelector('#classificationList')
     })
 })
 
-// build the inventory list
-function buildInventoryList(data) {
-  let inventoryDisplay = document.querySelector('#inventoryDisplay');
+// build the inv list
+function buildInvList(data) {
+  let invDisplay = document.querySelector('#invDisplay');
   // Set up the table labels
   let dataTable = '<thead>';
   dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
@@ -47,6 +47,6 @@ function buildInventoryList(data) {
   })
   dataTable += '</tbody>';
    
-  // Display the inventory in the table in the management view
-  inventoryDisplay.innerHTML = dataTable;
+  // Display the inv in the table in the management view
+  invDisplay.innerHTML = dataTable;
 }

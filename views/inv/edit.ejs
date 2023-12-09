@@ -10,59 +10,59 @@
   <% } %>
 
 
-<form class="inventory-add" id="updateForm" action="/inv/update/" method="post">
+<form class="inv-add" id="updateForm" action="/inv/edit/" method="post">
     <fieldset>
-        <legend>Modify Inventory</legend>
+        <legend>Modify Inv</legend>
             <div class="form-group">
-                <select class="form-control" name="classification_id" id="classificationId" required >
+                <select class="form-control" name="classification_id" id="classification_id" required >
                 <%-classificationDropDown%>
                 </select>
             </div>
 
     <div class="form-group">
         <label for="invMake">Make</label>
-            <input type="text" class="form-control" name="inv_make" id="invMake" placeholder="Make"
+            <input type="text" class="form-control" name="inv_make" id="inv_make" placeholder="Make"
                 value= "<%=locals.inv_make%>" required>
     </div>
     <div class="form-group">
         <label for="invModel">Model</label>
-            <input type="text" class="form-control" name="inv_model" id="invModel" placeholder="Model" 
+            <input type="text" class="form-control" name="inv_model" id="inv_model" placeholder="Model" 
                 value="<%=locals.inv_model%>" required>
     </div>
     <div class="form-group">
         <label for="invYear">Year</label>
-            <input type="text" class="form-control" name="inv_year" id="invYear" placeholder="Year" 
+            <input type="text" class="form-control" name="inv_year" id="inv_year" placeholder="Year" 
                 value="<%=locals.inv_year%>" required>
     </div>
     <div class="form-group">
         <label for="invColor">Color</label>
-            <input type="text" class="form-control" name="inv_color" id="invColor" placeholder="Color" 
+            <input type="text" class="form-control" name="inv_color" id="inv_color" placeholder="Color" 
                 value="<%=locals.inv_color%>" required>
     </div>
     <div class="form-group">
         <label for="invMiles">Miles</label>
-            <input type="number" class="form-control" name="inv_miles" id="invMiles" placeholder="Miles" 
+            <input type="number" class="form-control" name="inv_miles" id="inv_miles" placeholder="Miles" 
                 value="<%=locals.inv_miles%>" required>
     </div>
     <div class="form-group">
         <label for="invPrice">Price</label>
-            <input type="number" class="form-control" name="inv_price" id="invPrice" placeholder="Price" 
+            <input type="number" class="form-control" name="inv_price" id="inv_price" placeholder="Price" 
                 value="<%=locals.inv_price%>" required>
     </div>
 
     <div class="form-group">
         <label for="invDescription">Description</label>
-            <input type="text" class="form-control" name="inv_description" id="invDescription" placeholder="Description" 
+            <input type="text" class="form-control" name="inv_description" id="inv_description" placeholder="Description" 
                 required>
    </div>
     <div class="form-group">
         <label for="invImage">Image</label>
-            <input type="text" class="form-control" name="inv_image" id="invImage" placeholder="image" 
+            <input type="text" class="form-control" name="inv_image" id="inv_image" placeholder="image" 
                 required>
     </div>
     <div class="form-group">
         <label for="invThumbnail">Thumbnail</label>
-            <input type="text" class="form-control" name="inv_thumbnail" id="invThumbnail" placeholder="thumbnail" 
+            <input type="text" class="form-control" name="inv_thumbnail" id="inv_thumbnail" placeholder="thumbnail" 
                  required>
     </div>
     <div>
